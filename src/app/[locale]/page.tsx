@@ -1,21 +1,35 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import { useLocale, useTranslations } from "next-intl";
+import { Link } from "../../navigation";
 
 export default function Home() {
+  const t = useTranslations("Home");
+  const locale = useLocale();
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
+        {locale === "en" ? (
+          <Link href="/" locale="th">
+            <p>
+              เปลี่ยนเป็นภาษา<code className={styles.code}>ไทย</code>
+            </p>
+          </Link>
+        ) : (
+          <Link href="/" locale="en">
+            <p>
+              Change language to <code className={styles.code}>English</code>
+            </p>
+          </Link>
+        )}
         <div>
           <a
             href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer"
           >
-            By{" "}
+            {t("by")}
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"
@@ -46,10 +60,8 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
+          <h2>{t("docsTitle")}</h2>
+          <p>{t("docsDesc")}</p>
         </a>
 
         <a
@@ -58,10 +70,8 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
+          <h2>{t("learnTitle")}</h2>
+          <p>{t("learnDesc")}</p>
         </a>
 
         <a
@@ -70,10 +80,8 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
+          <h2>{t("templatesTitle")}</h2>
+          <p>{t("templatesDesc")}</p>
         </a>
 
         <a
@@ -82,12 +90,8 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
+          <h2>{t("deployTitle")}</h2>
+          <p>{t("deployDesc")}</p>
         </a>
       </div>
     </main>
